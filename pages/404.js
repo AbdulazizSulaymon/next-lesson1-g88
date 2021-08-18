@@ -1,10 +1,10 @@
-import React from 'react'
+import Container from '../containers/Container'
 
 const Page404 = () => {
     return (
-        <div>
+        <Container>
             <h1>404 page | sahifa topilmadi</h1>
-        </div>
+        </Container>
     )
 }
 

@@ -1,30 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import Head from 'next/head';
-import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  }
+import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover{
-      text-decoration: underline;
-    }
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-`;
-
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+import GlobalStyle from '../styles/global';
 
 function MyApp({ Component, pageProps }) {
   return <>
@@ -34,9 +17,10 @@ function MyApp({ Component, pageProps }) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <GlobalStyle />
-    <Component {...pageProps} />
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
   </>
-
 }
 
 export default MyApp;
