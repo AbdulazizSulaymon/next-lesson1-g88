@@ -1,7 +1,7 @@
 import { SET_ERROR, SET_LOADING, TOGGLE_SIDEBAR } from "../types";
 
 const initialState = {
-    loading: true,
+    loading: false,
     error: false,
     isSidebarShow: true,
 };
@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
 
         default: return state;
     }
-
 }
 
 export default reducer;

@@ -8,8 +8,18 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import GlobalStyle from '../styles/global';
+import { useEffect, useState } from 'react';
+import { initApi } from '../api';
 
 function MyApp({ Component, pageProps }) {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initApi();
+    setInit(true);
+  }, [])
+
+
   return <>
     <Head>
       <title>Create Next App</title>
@@ -17,9 +27,9 @@ function MyApp({ Component, pageProps }) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <GlobalStyle />
-    <Provider store={store}>
+    {init && <Provider store={store}>
       <Component {...pageProps} />
-    </Provider>
+    </Provider>}
   </>
 }
 

@@ -5,14 +5,16 @@ import Error from "../../../components/Error";
 import { setUsers } from '../../../redux/actions/usersActions';
 import UsersWrapper from './UsersWrapper'
 
-const Users = () => {
-    useEffect(() => {
-        setUsers()
-    }, [])
+const Users = ({ data }) => {
+    // useEffect(() => {
+    //     setUsers()
+    // }, [])
 
-    const data = useSelector(state => state.users.data);
+    // const data = useSelector(state => state.users.data);
     const error = useSelector(state => state.global.error);
     const loading = useSelector(state => state.global.loading);
+
+    console.log("data", data);
 
     return (
         <UsersWrapper>
@@ -20,7 +22,7 @@ const Users = () => {
 
             {loading && <LinearProgress /> ||
                 error && <Error /> ||
-                data.length > 0 && <TableContainer component={Paper}>
+                data?.length > 0 && <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
                             <TableRow>
